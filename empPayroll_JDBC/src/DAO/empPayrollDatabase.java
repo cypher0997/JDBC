@@ -5,6 +5,6 @@ import java.util.List;
 import MODEL.EmpPayrollData;
 
 public interface empPayrollDatabase{
-    public List<EmpPayrollData> getEmployees()
-        throws SQLException;
+    public List<EmpPayrollData> getEmployees() throws SQLException;
+    public void update() throws SQLException;
 }

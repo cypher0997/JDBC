@@ -30,4 +30,21 @@ public class EmpPayrollDbOperations implements empPayrollDatabase{
         }
         return ls;
     }
+
+    @Override
+    public void update() throws SQLException {
+       String query = "update emppayroll set name=? where id=?";
+       PreparedStatement ps = con.prepareStatement(query);
+       ps.setString(1,"terresa");
+       ps.setInt(2,6);
+       ps.executeUpdate();
+       String query1 = "update salary set ammount=? where empID=? and did=?";
+       PreparedStatement ps1 = con.prepareStatement(query1);
+       ps1.setString(1,"3000000");
+       ps1.setInt(2,6);
+       ps1.setInt(3,1);
+       ps1.executeUpdate();
+
+    }
+    
 }
