@@ -69,4 +69,18 @@ public class EmpPayrollDbOperations implements empPayrollDatabase{
         }
         return ls;
     }
+
+    @Override
+    public void empViaJoinDate() throws SQLException {
+        String query = "select * from emppayroll where start<=?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1,"2015-12-21");
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()){
+            System.out.println(rs.getInt("id"));
+            System.out.println(rs.getString("name"));
+            System.out.println(rs.getString("address"));
+            System.out.println(rs.getInt("pno"));
+        }
+    }
 }

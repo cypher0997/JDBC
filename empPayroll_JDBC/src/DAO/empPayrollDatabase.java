@@ -8,4 +8,5 @@ public interface empPayrollDatabase{
     public List<EmpPayrollData> getEmployees() throws SQLException;
     public void update() throws SQLException;
     public List<EmpPayrollData> getEmpDetailsViaName() throws SQLException;
+    public void empViaJoinDate() throws SQLException;
 }
