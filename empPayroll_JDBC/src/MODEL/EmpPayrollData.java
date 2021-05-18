@@ -1,9 +1,15 @@
 package MODEL;
 
+import java.sql.Date;
+
+import javax.xml.crypto.Data;
+
 public class EmpPayrollData {
     int emp_id;
     String emp_name;
     String emp_address;
+    int phoneNum;
+    Date startDate;
   
     public EmpPayrollData(){
 
@@ -45,9 +51,28 @@ public class EmpPayrollData {
         this.emp_address = emp_address;
     }
   
-    @Override
-    public String toString()
-    {
-        return "Employee [emp_id=" + emp_id + ", emp_name=" + emp_name + ", emp_address=" + emp_address + "]";
+    
+    public int getPhoneNum() {
+        return phoneNum;
     }
+
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    @Override
+    public String toString() {
+        return "EmpPayrollData [emp_address=" + emp_address + ", emp_id=" + emp_id + ", emp_name=" + emp_name
+                + ", phoneNum=" + phoneNum + ", startDate=" + startDate + "]";
+    }
+
+    
 }

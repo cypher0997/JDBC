@@ -10,6 +10,7 @@ import java.util.List;
 import MODEL.EmpPayrollData;
 import UTIL.DataBaseConnection;
 
+
 public class EmpPayrollDbOperations implements empPayrollDatabase{
     static Connection con = DataBaseConnection.getConnection();
     
@@ -26,6 +27,8 @@ public class EmpPayrollDbOperations implements empPayrollDatabase{
             emp.setEmp_id(rs.getInt("id"));
             emp.setEmp_name(rs.getString("name"));
             emp.setEmp_address(rs.getString("address"));
+            emp.setPhoneNum(rs.getInt("pno"));
+            emp.setStartDate(rs.getDate("start"));
             ls.add(emp);
         }
         return ls;
@@ -47,4 +50,23 @@ public class EmpPayrollDbOperations implements empPayrollDatabase{
 
     }
     
+    @Override
+    public List<EmpPayrollData> getEmpDetailsViaName() throws SQLException {
+        String query = "select * from emppayroll where name=?";
+        PreparedStatement ps = con.prepareStatement(query);
+        ps.setString(1,"p1");
+        ResultSet rs = ps.executeQuery();
+        List<EmpPayrollData> ls = new ArrayList();
+  
+        while (rs.next()) {
+            EmpPayrollData emp = new EmpPayrollData();
+            emp.setEmp_id(rs.getInt("id"));
+            emp.setEmp_name(rs.getString("name"));
+            emp.setEmp_address(rs.getString("address"));
+            emp.setPhoneNum(rs.getInt("pno"));
+            emp.setStartDate(rs.getDate("start"));
+            ls.add(emp);
+        }
+        return ls;
+    }
 }
