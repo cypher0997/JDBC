@@ -11,7 +11,7 @@ public class Main {
         DataBaseConnection.setConnection();
         EmpPayrollDbOperations op = new EmpPayrollDbOperations();
         Scanner sc = new Scanner (System.in);
-        System.out.println("enter your choice"+
+        System.out.println("enter your choice"+"\n"+
                             "press 1 to add record to tables emppayroll,department,emppayroll_details"+"\n"
                             +"press 2 to retrieve employee data"+"\n"+
                             "press 3 to update employee daata on basis of 'id'"+"\n"+

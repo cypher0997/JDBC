@@ -42,28 +42,37 @@ public class EmpPayrollDbOperations implements EmpPayrollDatabaseInterface{
 
     @Override
     public void update() throws SQLException {
-        Scanner sc = new Scanner(System.in);
-        double empId = sc.nextDouble();
-       String query = "update emppayroll set name=? where id=?";
-       PreparedStatement ps = con.prepareStatement(query);
-       ps.setString(1,"terresa");
-       ps.setInt(2,6);
-       ps.executeUpdate();
-       System.out.println("enter salary");
-            double baseSal = sc.nextDouble();
-            double deduction = baseSal * 0.2;
-            double taxable = baseSal - deduction;
-            double tax = taxable * 0.1;
-            double netPay = baseSal - tax;
-            String queryNext2 = "update emppayroll_details set basePay=?,deducion=?,taxablePay=?,tax=?,netPay=?";
-            PreparedStatement pst2 = con.prepareStatement(queryNext2);
-            pst2.setDouble(1,empId);
-            pst2.setDouble(2,baseSal);
-            pst2.setDouble(3, deduction);
-            pst2.setDouble(4,taxable);
-            pst2.setDouble(5,tax);
-            pst2.setDouble(6,netPay);
-        con.close();
+        try{
+            con.setAutoCommit(false);
+            Scanner sc = new Scanner(System.in);
+            double empId = sc.nextDouble();
+            String query = "update emppayroll set name=? where id=?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setString(1,"terresa");
+            ps.setInt(2,6);
+            ps.executeUpdate();
+            System.out.println("enter salary");
+                double baseSal = sc.nextDouble();
+                double deduction = baseSal * 0.2;
+                double taxable = baseSal - deduction;
+                double tax = taxable * 0.1;
+                double netPay = baseSal - tax;
+                String queryNext2 = "update emppayroll_details set basePay=?,deducion=?,taxablePay=?,tax=?,netPay=?";
+                PreparedStatement pst2 = con.prepareStatement(queryNext2);
+                pst2.setDouble(1,empId);
+                pst2.setDouble(2,baseSal);
+                pst2.setDouble(3, deduction);
+                pst2.setDouble(4,taxable);
+                pst2.setDouble(5,tax);
+                pst2.setDouble(6,netPay);
+                con.commit();
+        }catch(SQLException e){
+            e.printStackTrace();
+            if(con != null)
+                con.rollback();
+        }finally{
+            con.close();
+        }
     }
     
     @Override
