@@ -10,5 +10,5 @@ public interface EmpPayrollDatabaseInterface{
     public void update() throws SQLException;
     public List<EmpPayrollData> getEmpDetailsViaName() throws SQLException;
     public void empViaJoinDate() throws SQLException;
-    public void addEmpToPayroll() throws SQLException;
+    public void addEmpToPayrollAndDepartmentAndToPayrollDetails() throws SQLException;
 }
