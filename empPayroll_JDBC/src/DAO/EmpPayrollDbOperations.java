@@ -1,17 +1,20 @@
-package DAO;
+package Dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-import MODEL.EmpPayrollData;
-import UTIL.DataBaseConnection;
+import Model.EmpPayrollData;
+import Util.DataBaseConnection;
 
 
-public class EmpPayrollDbOperations implements empPayrollDatabase{
+
+public class EmpPayrollDbOperations implements EmpPayrollDatabaseInterface{
     static Connection con = DataBaseConnection.getConnection();
     
     @Override
@@ -82,5 +85,28 @@ public class EmpPayrollDbOperations implements empPayrollDatabase{
             System.out.println(rs.getString("address"));
             System.out.println(rs.getInt("pno"));
         }
+    }
+
+    
+
+    @Override
+    public void addEmpToPayroll() throws SQLException {
+        String query = "insert into emppayroll (name,start,pno,address) values(?,?,?,?)";
+        PreparedStatement ps = con.prepareStatement(query);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter name");
+        String name = sc.nextLine(); 
+        System.out.println("enter startdate");
+        String date = sc.nextLine();
+        Date dateNew = Date.valueOf(date);
+        System.out.println("enter address");
+        String address = sc.nextLine();
+        System.out.println("enter phoneNumber");
+        int phoneNumber = sc.nextInt();
+        ps.setString(1,name);
+        ps.setDate(2,dateNew);
+        ps.setInt(3, phoneNumber);
+        ps.setString(4,address);
+        ps.executeUpdate();
     }
 }

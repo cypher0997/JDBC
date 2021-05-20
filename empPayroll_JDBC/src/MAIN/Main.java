@@ -1,19 +1,18 @@
-package MAIN;
+package Main;
 
 import java.sql.SQLException;
-import java.util.*;
+import java.text.ParseException;
 
-import DAO.EmpPayrollDbOperations;
-import MODEL.EmpPayrollData;
-import UTIL.DataBaseConnection;
-
+import Dao.EmpPayrollDbOperations;
+import Util.DataBaseConnection;
 public class Main {
-    public static void main(String args[]) throws SQLException {
+    public static void main(String args[]) throws SQLException, ParseException {
         DataBaseConnection.setConnection();
         EmpPayrollDbOperations op = new EmpPayrollDbOperations();
         System.out.println(op.getEmployees());
         op.update();
         System.out.println(op.getEmpDetailsViaName());
         op.empViaJoinDate();
+        op.addEmpToPayroll();
     }
 }

@@ -1,8 +1,7 @@
-package MODEL;
+package Model;
 
 import java.sql.Date;
 
-import javax.xml.crypto.Data;
 
 public class EmpPayrollData {
     int emp_id;
